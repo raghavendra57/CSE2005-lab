@@ -1,16 +1,19 @@
 public class PalindromeCheck {
     public static void main(String[] args) {
-        String str = "madam"; // You can change this value
-        String reversed = "";
+        String str = "madam";
+        boolean isPalindrome = true;
+        int len = str.length();
 
-        for (int i = str.length() - 1; i >= 0; i--) {
-            reversed += str.charAt(i);
+        for (int i = 0; i < len / 2; i++) {
+            if (str.charAt(i) != str.charAt(len - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
         }
 
-        if (str.equals(reversed)) {
-            System.out.println(str + " is a palindrome.");
-        } else {
-            System.out.println(str + " is not a palindrome.");
-        }
+        if (isPalindrome)
+            System.out.println("Palindrome");
+        else
+            System.out.println("Not a palindrome");
     }
 }
