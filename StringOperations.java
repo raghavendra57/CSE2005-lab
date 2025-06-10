@@ -1,36 +1,47 @@
-package week6;
+package week3;
 
-public class StringOperations {
-    
-    // Hide last 4 digits of a phone number
-    static String hidePhone(String phone) {
-        if (phone.length() <= 4) return "****";
-        return phone.substring(0, phone.length() - 4) + "****";
-    }
+import java.util.Scanner;
+import java.util.Arrays;
 
-    // Hide middle part of an email
-    static String hideEmail(String email) {
-        int atPos = email.indexOf('@');
-        if (atPos <= 2) return "***" + email.substring(atPos); 
-        return email.charAt(0) + "***" + email.charAt(atPos - 1) + email.substring(atPos);
-    }
-
-    // Replace all characters except first and last
-    static String maskMiddle(String word) {
-        if (word.length() <= 2) return word;
-        StringBuilder sb = new StringBuilder();
-        sb.append(word.charAt(0));
-        for (int i = 1; i < word.length() - 1; i++) {
-            sb.append("*");
-        }
-        sb.append(word.charAt(word.length() - 1));
-        return sb.toString();
-    }
-
+public class StringArrayOperations {
     public static void main(String[] args) {
-        System.out.println("Hidden Phone: " + hidePhone("9876543210"));
-        System.out.println("Hidden Email: " + hideEmail("example123@gmail.com"));
-        System.out.println("Masked Name: " + maskMiddle("Nikhil"));
-    }
-}
+        Scanner sc = new Scanner(System.in);
+        String[] words = new String[10];
 
+        // Input 10 strings
+        System.out.println("Enter 10 strings:");
+        for (int i = 0; i < 10; i++) {
+            System.out.print("String " + (i + 1) + ": ");
+            words[i] = sc.nextLine();
+        }
+
+        // String operations
+        System.out.println("\n--- String Operations ---");
+        for (String word : words) {
+            System.out.println("Original: " + word);
+            System.out.println("Uppercase: " + word.toUpperCase());
+            System.out.println("Length: " + word.length());
+            System.out.println("Palindrome: " + isPalindrome(word));
+            System.out.println();
+        }
+
+        // Array operations
+        System.out.println("--- Array Operations ---");
+        System.out.println("Original Array:");
+        printArray(words);
+
+        // Sorting
+        Arrays.sort(words);
+        System.out.println("\nSorted Array:");
+        printArray(words);
+
+        // Search operation
+        System.out.print("\nEnter a word to search: ");
+        String searchWord = sc.nextLine();
+        boolean found = false;
+        for (String word : words) {
+            if (word.equals(searchWord)) {
+                found = true;
+                break;
+            }
+        }
